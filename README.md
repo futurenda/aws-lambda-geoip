@@ -30,5 +30,20 @@ make
 
 ## Deploy
 
+### AWS Lambda
+
 - Runtime: python2.7
 - Handler: handler.Handle
+
+### API Gateway
+
+#### Method Request
+
+##### URL Query String Parameters
+
+- `ip`
+
+#### Body Mapping Template
+
+- `Content-Type`: `application/json`
+- `Template`: `Method Request passthrough`

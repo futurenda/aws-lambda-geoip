@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
 	"github.com/oschwald/geoip2-golang"
+	"github.com/tidwall/gjson"
 	"log"
 	"net"
+	"strings"
 )
 
-func Handle(evt interface{}, ctx *runtime.Context) (interface{}, error) {
+func Handle(event json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 	names := AssetNames()
 	log.Printf("AssetNames: %v", names)
 	data, err := Asset("data/GeoLite2-City.mmdb")
@@ -20,21 +22,19 @@ func Handle(evt interface{}, ctx *runtime.Context) (interface{}, error) {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	_, err = json.Marshal(evt)
+	ev, err := json.Marshal(event)
 	if err != nil {
 		return "", err
 	}
-	ip := net.ParseIP("8.8.8.8")
-	record, err := db.City(ip)
-	if err != nil {
-		return "", err
-	}
+	qs := gjson.GetBytes(ev, "params.querystring.ip").String()
+	ips := strings.Split(qs, ",")
 	res := map[string]interface{}{}
-	res[ip.String()] = record
+	for _, ip := range ips {
+		record, err := db.City(net.ParseIP(ip))
+		if err != nil {
+			return "", err
+		}
+		res[ip] = record
+	}
 	return res, err
-}
-
-func main() {
-	res, _ := Handle(nil, nil)
-	log.Printf("Res: %s", res)
 }
