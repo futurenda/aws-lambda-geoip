@@ -1,3 +1,7 @@
 *.mmdb
 *.so
 *.zip
+*.swp
+vendor
+aws-lambda-geoip
+data.go
