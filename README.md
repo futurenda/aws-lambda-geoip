@@ -5,6 +5,16 @@ AWS Lambda GeoIP Service based on:
 - https://github.com/eawsy/aws-lambda-go-shim
 - https://github.com/oschwald/geoip2-golang
 
+## Usage
+
+```bash
+curl "https://YOUR_API_GATEWAY.execute-api.us-west-2.amazonaws.com/prod?ip=1.2.3.4"
+```
+
+```bash
+curl "https://YOUR_API_GATEWAY.execute-api.us-west-2.amazonaws.com/prod?ip=1.2.3.4,1.2.3.5"
+```
+
 ## Data
 
 http://dev.maxmind.com/geoip/geoip2/geolite2/
