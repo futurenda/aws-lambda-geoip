@@ -35,6 +35,18 @@ make
 - Runtime: python2.7
 - Handler: handler.Handle
 
+#### Test Event
+
+```json
+{
+   "params":{
+      "querystring":{
+         "ip":"1.2.3.4,2.3.4.5"
+      }
+   }
+}
+```
+
 ### API Gateway
 
 #### Method Request
