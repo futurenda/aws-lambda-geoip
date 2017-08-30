@@ -34,7 +34,7 @@ go-bindata -nocompress -o data.go data/
 
 ```bash
 docker pull eawsy/aws-lambda-go-shim:latest
-go get -u -d github.com/eawsy/aws-lambda-go-core/...
+dep ensure -v
 make
 ```
 
