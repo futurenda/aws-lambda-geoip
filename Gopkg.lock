@@ -21,6 +21,18 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/tidwall/gjson"
+  packages = ["."]
+  revision = "4e8f0c7f2819fc0eceeae4d08df9dd92080b1b48"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/tidwall/match"
+  packages = ["."]
+  revision = "173748da739a410c5b0b813b956f89ff94730b4c"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows"]
   revision = "c4489faa6e5ab84c0ef40d6ee878f7a030281f0f"
@@ -28,6 +40,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "d09b7ac4c8ffdc6f3e3870a83507866d4be1c33447551ac6ce73d7a7cf68e40d"
+  inputs-digest = "10bb270dd9a60d253787acfa3f1a5da22863566a41d301f97d2c28c6e9597247"
   solver-name = "gps-cdcl"
   solver-version = 1

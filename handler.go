@@ -10,6 +10,11 @@ import (
 	"strings"
 )
 
+type GeoIP struct {
+	IP   string      `json:"ip"`
+	Data interface{} `json:"data"`
+}
+
 func Handle(event json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 	names := AssetNames()
 	log.Printf("AssetNames: %v", names)
@@ -28,13 +33,16 @@ func Handle(event json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 	}
 	qs := gjson.GetBytes(ev, "params.querystring.ip").String()
 	ips := strings.Split(qs, ",")
-	res := map[string]interface{}{}
+	res := []*GeoIP{}
 	for _, ip := range ips {
 		record, err := db.City(net.ParseIP(ip))
 		if err != nil {
 			return "", err
 		}
-		res[ip] = record
+		res = append(res, &GeoIP{
+			IP:   ip,
+			Data: record,
+		})
 	}
 	return res, err
 }
