@@ -2,12 +2,13 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
-	"github.com/oschwald/geoip2-golang"
-	"github.com/tidwall/gjson"
 	"log"
 	"net"
 	"strings"
+
+	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
+	"github.com/oschwald/geoip2-golang"
+	"github.com/tidwall/gjson"
 )
 
 type GeoIP struct {
