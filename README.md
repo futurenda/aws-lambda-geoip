@@ -33,7 +33,6 @@ go-bindata -nocompress -o data.go data/
 ```
 
 ```bash
-docker pull eawsy/aws-lambda-go-shim:latest
 dep ensure -v
 make
 ```
