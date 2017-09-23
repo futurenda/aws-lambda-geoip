@@ -33,7 +33,6 @@ go-bindata -nocompress -o data.go data/
 ```
 
 ```bash
-docker pull eawsy/aws-lambda-go-shim:latest
 dep ensure -v
 make
 ```
@@ -45,32 +44,13 @@ make
 - Runtime: python2.7
 - Handler: handler.Handle
 
-#### Test Event
-
-```json
-{
-   "params":{
-      "querystring":{
-         "ip":"1.2.3.4,1.2.3.5"
-      }
-   }
-}
-```
-
 ### API Gateway
 
-#### Method Request
+1. Create Method - Any
+2. Use Lambda Proxy integration - True
+3. Choose Lambda Function
 
-##### URL Query String Parameters
-
-- `ip`
-
-#### Body Mapping Template
-
-- `Content-Type`: `application/json`
-- `Template`: `Method Request passthrough`
-
-### Sample
+### Example Response
 
 ```json
 [

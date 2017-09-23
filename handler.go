@@ -2,12 +2,14 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
-	"github.com/oschwald/geoip2-golang"
-	"github.com/tidwall/gjson"
 	"log"
 	"net"
+	"net/http"
 	"strings"
+
+	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
+	"github.com/futurenda/aws-utils-go/lambda/proxy-integration"
+	"github.com/oschwald/geoip2-golang"
 )
 
 type GeoIP struct {
@@ -15,7 +17,7 @@ type GeoIP struct {
 	Data interface{} `json:"data"`
 }
 
-func Handle(event json.RawMessage, ctx *runtime.Context) (interface{}, error) {
+func Query(ips []string) ([]*GeoIP, error) {
 	names := AssetNames()
 	log.Printf("AssetNames: %v", names)
 	data, err := Asset("data/GeoLite2-City.mmdb")
@@ -27,22 +29,50 @@ func Handle(event json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	ev, err := json.Marshal(event)
-	if err != nil {
-		return "", err
-	}
-	qs := gjson.GetBytes(ev, "params.querystring.ip").String()
-	ips := strings.Split(qs, ",")
+
 	res := []*GeoIP{}
-	for _, ip := range ips {
-		record, err := db.City(net.ParseIP(ip))
+	for _, input := range ips {
+		ip := net.ParseIP(input)
+		if ip == nil {
+			continue
+		}
+		record, err := db.City(ip)
 		if err != nil {
-			return "", err
+			return nil, err
 		}
 		res = append(res, &GeoIP{
-			IP:   ip,
+			IP:   input,
 			Data: record,
 		})
 	}
-	return res, err
+
+	return res, nil
+}
+
+func HandleHTTPRequest(req *http.Request, w http.ResponseWriter) error {
+	qs := req.URL.Query().Get("ip")
+	ips := strings.Split(qs, ",")
+	res, err := Query(ips)
+	if err != nil {
+		return err
+	}
+	data, err := json.Marshal(res)
+	if err != nil {
+		return err
+	}
+	_, err = w.Write(data)
+	return err
+}
+
+func Handle(event json.RawMessage, ctx *runtime.Context) (interface{}, error) {
+	req, err := proxyIntegration.NewRequest(event)
+	if err != nil {
+		return nil, err
+	}
+	w := proxyIntegration.NewResponseWriter()
+	err = HandleHTTPRequest(req, w)
+	if err != nil {
+		return nil, err
+	}
+	return w.Response(), nil
 }

@@ -8,6 +8,24 @@
   revision = "e26eed6aa244a3d45aa693816a9c5faf39390fcd"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/futurenda/aws-utils-go"
+  packages = ["lambda/proxy-integration"]
+  revision = "b271ddacde9fdb5fbbddfcbd28aafb53a210b8bf"
+
+[[projects]]
+  name = "github.com/onsi/ginkgo"
+  packages = [".","config","internal/codelocation","internal/containernode","internal/failer","internal/leafnodes","internal/remote","internal/spec","internal/spec_iterator","internal/specrunner","internal/suite","internal/testingtproxy","internal/writer","reporters","reporters/stenographer","reporters/stenographer/support/go-colorable","reporters/stenographer/support/go-isatty","types"]
+  revision = "9eda700730cba42af70d53180f9dcce9266bc2bc"
+  version = "v1.4.0"
+
+[[projects]]
+  name = "github.com/onsi/gomega"
+  packages = [".","format","internal/assertion","internal/asyncassertion","internal/oraclematcher","internal/testingtsupport","matchers","matchers/support/goraph/bipartitegraph","matchers/support/goraph/edge","matchers/support/goraph/node","matchers/support/goraph/util","types"]
+  revision = "c893efa28eb45626cdaa76c9f653b62488858837"
+  version = "v1.2.0"
+
+[[projects]]
   name = "github.com/oschwald/geoip2-golang"
   packages = ["."]
   revision = "5b1dc16861f81d05d9836bb21c2d0d65282fc0b8"
@@ -21,15 +39,9 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/tidwall/gjson"
-  packages = ["."]
-  revision = "4e8f0c7f2819fc0eceeae4d08df9dd92080b1b48"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/tidwall/match"
-  packages = ["."]
-  revision = "173748da739a410c5b0b813b956f89ff94730b4c"
+  name = "golang.org/x/net"
+  packages = ["html","html/atom","html/charset"]
+  revision = "0744d001aa8470aaa53df28d32e5ceeb8af9bd70"
 
 [[projects]]
   branch = "master"
@@ -37,9 +49,21 @@
   packages = ["unix","windows"]
   revision = "c4489faa6e5ab84c0ef40d6ee878f7a030281f0f"
 
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/text"
+  packages = ["encoding","encoding/charmap","encoding/htmlindex","encoding/internal","encoding/internal/identifier","encoding/japanese","encoding/korean","encoding/simplifiedchinese","encoding/traditionalchinese","encoding/unicode","internal/gen","internal/tag","internal/utf8internal","language","runes","transform","unicode/cldr"]
+  revision = "1cbadb444a806fd9430d14ad08967ed91da4fa0a"
+
+[[projects]]
+  branch = "v2"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "eb3733d160e74a9c7e442f435eb3bea458e1d19f"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "10bb270dd9a60d253787acfa3f1a5da22863566a41d301f97d2c28c6e9597247"
+  inputs-digest = "e292e92399cc5a581b8e20fbbaa8a2d01c2b261a01791f1e9589ec9d380f7887"
   solver-name = "gps-cdcl"
   solver-version = 1
