@@ -44,7 +44,7 @@ make
 - Runtime: python2.7
 - Handler: handler.Handle
 
-### API Gateway
+### API Gateway Quick Start Guide
 
 1. Create Method - Any
 2. Use Lambda Proxy integration - True
