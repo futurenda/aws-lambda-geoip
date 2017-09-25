@@ -1,4 +1,4 @@
-# aws-lambda-geoip
+# serverless-geoip
 
 AWS Lambda GeoIP Service based on:
 
