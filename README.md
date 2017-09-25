@@ -48,7 +48,6 @@ make
 
 1. Create Method - Any
 2. Use Lambda Proxy integration - True
-3. Choose Lambda Function
 
 ### Example Response
 
