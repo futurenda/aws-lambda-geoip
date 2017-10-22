@@ -60,6 +60,7 @@ func HandleHTTPRequest(req *http.Request, w http.ResponseWriter) error {
 	if err != nil {
 		return err
 	}
+	w.Header().Add("GeoIP-Service-Version", "v2.0.1")
 	_, err = w.Write(data)
 	return err
 }
