@@ -46,11 +46,25 @@ make
 
 #### Test Event
 
+##### Input
+
 ```
 {
   "queryStringParameters": {
     "ip": "1.2.3.4"
   }
+}
+```
+
+##### Expected Output
+
+```
+{
+  "body": "[{\"ip\":\"1.2.3.4\",\"data\":{\"City\":{\"GeoNameID\":5804306,\"Names\":{\"en\":\"Mukilteo\",\"ja\":\"ムキルテオ\",\"zh-CN\":\"马科尔蒂奥\"}},\"Continent\":{\"Code\":\"NA\",\"GeoNameID\":6255149,\"Names\":{\"de\":\"Nordamerika\",\"en\":\"North America\",\"es\":\"Norteamérica\",\"fr\":\"Amérique du Nord\",\"ja\":\"北アメリカ\",\"pt-BR\":\"América do Norte\",\"ru\":\"Северная Америка\",\"zh-CN\":\"北美洲\"}},\"Country\":{\"GeoNameID\":6252001,\"IsoCode\":\"US\",\"Names\":{\"de\":\"USA\",\"en\":\"United States\",\"es\":\"Estados Unidos\",\"fr\":\"États-Unis\",\"ja\":\"アメリカ合衆国\",\"pt-BR\":\"Estados Unidos\",\"ru\":\"США\",\"zh-CN\":\"美国\"}},\"Location\":{\"AccuracyRadius\":1000,\"Latitude\":47.913,\"Longitude\":-122.3042,\"MetroCode\":819,\"TimeZone\":\"America/Los_Angeles\"},\"Postal\":{\"Code\":\"98275\"},\"RegisteredCountry\":{\"GeoNameID\":2077456,\"IsoCode\":\"AU\",\"Names\":{\"de\":\"Australien\",\"en\":\"Australia\",\"es\":\"Australia\",\"fr\":\"Australie\",\"ja\":\"オーストラリア\",\"pt-BR\":\"Austrália\",\"ru\":\"Австралия\",\"zh-CN\":\"澳大利亚\"}},\"RepresentedCountry\":{\"GeoNameID\":0,\"IsoCode\":\"\",\"Names\":null,\"Type\":\"\"},\"Subdivisions\":[{\"GeoNameID\":5815135,\"IsoCode\":\"WA\",\"Names\":{\"en\":\"Washington\",\"es\":\"Washington\",\"fr\":\"Washington\",\"ja\":\"ワシントン州\",\"ru\":\"Вашингтон\",\"zh-CN\":\"华盛顿州\"}}],\"Traits\":{\"IsAnonymousProxy\":false,\"IsSatelliteProvider\":false}}}]",
+  "headers": {
+    "Geoip-Service-Version": "v2.0.1"
+  },
+  "statusCode": 200
 }
 ```
 
